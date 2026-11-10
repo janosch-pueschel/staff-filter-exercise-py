@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
@@ -10,18 +10,65 @@
 
     <h2>Aufgaben:</h2>
     <ol>
-      <li>Zeige hier im Template eine Liste aller Mitarbeiter, ihrer Abteilung und ihres Gehalts an.</li>
-      <li>Zeige eine Liste der Namen aller Mitarbeiter, die mehr als 3000 € im Monat verdienen.</li>
-      <li>Wie hoch ist die Anzahl der Mitarbeiter, die 5000 € im Monat oder mehr verdienen?</li>
+      <li>
+        Zeige hier im Template eine Liste aller Mitarbeiter, ihrer Abteilung und
+        ihres Gehalts an.
+      </li>
+      <li>
+        Zeige eine Liste der Namen aller Mitarbeiter, die mehr als 3000 € im
+        Monat verdienen.
+      </li>
+      <li>
+        Wie hoch ist die Anzahl der Mitarbeiter, die 5000 € im Monat oder mehr
+        verdienen?
+      </li>
     </ol>
     <h3>Zusatzaufgaben:</h3>
     <ol start="4">
-      <li>Wie hoch ist das Durchschnittsgehalt aller Mitarbeiter im Sales-Team? Zeige das Ergebnis auf zwei Nachkommastellen gerundet an.</li>
-      <li>Welche Mitarbeiter wurden vor dem 1. Januar 2022 eingestellt und gehören NICHT zur Abteilung HR?</li>
+      <li>
+        Wie hoch ist das Durchschnittsgehalt aller Mitarbeiter im Sales-Team?
+        Zeige das Ergebnis auf zwei Nachkommastellen gerundet an.
+      </li>
+      <li>
+        Welche Mitarbeiter wurden vor dem 1. Januar 2022 eingestellt und gehören
+        NICHT zur Abteilung HR?
+      </li>
     </ol>
 
-    <h2 style="color:red">Antworten:</h2>
+    <h2 style="color: red">Antworten:</h2>
 
     <!-- Hier eure Antworten rendern -->
+    <h3>1. Mitarbeiterliste</h3>
+    <ul>
+      {% for employee in employees_with_department %}
+      <li>
+        <b>{{employee.name}}</b>: Abteilung: {{employee.department__name}} -
+        Gehalt: {{employee.salary}}€
+      </li>
+      {% endfor %}
+    </ul>
+
+    <h3>2. Mitarbeiter, die mehr als 3000€ im Monat verdienen</h3>
+    <ul>
+      {% for employee in salary_gt_3000_employees %}
+      <li>{{employee.name}}</li>
+      {% endfor %}
+    </ul>
+
+    <h3>3. Anzahl Mitarbeiter, die 5000€ im Monat oder mehr verdienen</h3>
+    <p>{{count_salary_gte_5000}}</p>
+
+    <h3>4. Durchschnittsgehalt im Sales-Team</h3>
+    <p>{{avg_salary_department_sales|floatformat:2}}€</p>
+
+    <h3>
+      5. Mitarbeiter, die vor dem 1. Januar 2022 eingestellt wurden und nicht im
+      HR-Team sind
+    </h3>
+    <ul>
+      {% for employee in pre_2022_non_hr_employees %}
+      <li>{{employee.name}}</li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
