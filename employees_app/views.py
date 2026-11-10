@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Employee
-from django.db.models import Avg, Q
+from django.db.models import Avg
 from datetime import date
 
 
